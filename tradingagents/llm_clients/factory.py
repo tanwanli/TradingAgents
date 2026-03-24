@@ -39,6 +39,9 @@ def create_llm_client(
 
     if provider_lower == "xai":
         return OpenAIClient(model, base_url, provider="xai", **kwargs)
+    
+    if provider_lower == "dashscope":
+        return OpenAIClient(model, base_url, provider="dashscope", **kwargs)
 
     if provider_lower == "anthropic":
         return AnthropicClient(model, base_url, **kwargs)

@@ -166,6 +166,16 @@ def select_shallow_thinking_agent(provider) -> str:
             ("NVIDIA Nemotron 3 Nano 30B (free)", "nvidia/nemotron-3-nano-30b-a3b:free"),
             ("Z.AI GLM 4.5 Air (free)", "z-ai/glm-4.5-air:free"),
         ],
+        "dashscope": [
+            ("千问-qwen3.5-plus", "qwen3.5-plus"),
+            ("千问-qwen3-max-2026-01-23", "qwen3-max-2026-01-23"),
+            ("千问-qwen3-coder-next", "qwen3-coder-next"),
+            ("千问-qwen3-coder-plus", "qwen3-coder-plus"),
+            ("智谱-glm-5", "glm-5"),
+            ("智谱-glm-4.7", "glm-4.7"),
+            ("Kimi-kimi-k2.5", "kimi-k2.5"),
+            ("MiniMax-MiniMax-M2.5", "MiniMax-M2.5"),
+        ],
         "ollama": [
             ("Qwen3:latest (8B, local)", "qwen3:latest"),
             ("GPT-OSS:latest (20B, local)", "gpt-oss:latest"),
@@ -233,6 +243,16 @@ def select_deep_thinking_agent(provider) -> str:
             ("Z.AI GLM 4.5 Air (free)", "z-ai/glm-4.5-air:free"),
             ("NVIDIA Nemotron 3 Nano 30B (free)", "nvidia/nemotron-3-nano-30b-a3b:free"),
         ],
+        "dashscope": [
+            ("千问-qwen3.5-plus", "qwen3.5-plus"),
+            ("千问-qwen3-max-2026-01-23", "qwen3-max-2026-01-23"),
+            ("千问-qwen3-coder-next", "qwen3-coder-next"),
+            ("千问-qwen3-coder-plus", "qwen3-coder-plus"),
+            ("智谱-glm-5", "glm-5"),
+            ("智谱-glm-4.7", "glm-4.7"),
+            ("Kimi-kimi-k2.5", "kimi-k2.5"),
+            ("MiniMax-MiniMax-M2.5", "MiniMax-M2.5"),
+        ],
         "ollama": [
             ("GLM-4.7-Flash:latest (30B, local)", "glm-4.7-flash:latest"),
             ("GPT-OSS:latest (20B, local)", "gpt-oss:latest"),
@@ -271,6 +291,7 @@ def select_llm_provider() -> tuple[str, str]:
         ("Anthropic", "https://api.anthropic.com/"),
         ("xAI", "https://api.x.ai/v1"),
         ("Openrouter", "https://openrouter.ai/api/v1"),
+        ("Dashscope", "https://coding.dashscope.aliyuncs.com/v1"),
         ("Ollama", "http://localhost:11434/v1"),
     ]
     
