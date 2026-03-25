@@ -1,5 +1,6 @@
 import time
 import json
+from tradingagents.agents.utils.agent_utils import get_language_instruction
 
 from tradingagents.agents.utils.agent_utils import build_instrument_context
 
@@ -40,7 +41,7 @@ Here are your past reflections on mistakes:
 
 Here is the debate:
 Debate History:
-{history}"""
+{history}{get_language_instruction()}"""
         response = llm.invoke(prompt)
 
         new_investment_debate_state = {

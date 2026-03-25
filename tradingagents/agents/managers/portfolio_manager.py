@@ -1,5 +1,5 @@
-from tradingagents.agents.utils.agent_utils import build_instrument_context
 
+from tradingagents.agents.utils.agent_utils import build_instrument_context, get_language_instruction
 
 def create_portfolio_manager(llm, memory):
     def portfolio_manager_node(state) -> dict:
@@ -50,7 +50,7 @@ def create_portfolio_manager(llm, memory):
 
 ---
 
-Be decisive and ground every conclusion in specific evidence from the analysts."""
+Be decisive and ground every conclusion in specific evidence from the analysts.{get_language_instruction()}"""
 
         response = llm.invoke(prompt)
 

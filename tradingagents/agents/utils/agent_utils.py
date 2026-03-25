@@ -28,6 +28,15 @@ def build_instrument_context(ticker: str) -> str:
         "preserving any exchange suffix (e.g. `.TO`, `.L`, `.HK`, `.T`)."
     )
 
+def get_language_instruction() -> str:
+    """Return a language instruction string based on the configured output_language.
+    Returns an empty string for English (default), or a Chinese instruction string."""
+    from tradingagents.dataflows.config import get_config
+    lang = get_config().get("output_language", "en")
+    if lang == "zh":
+        return "\n\nIMPORTANT: You must respond entirely in Simplified Chinese (简体中文). All analysis, reports, recommendations, and outputs must be written in Chinese."
+    return ""
+
 def create_msg_delete():
     def delete_messages(state):
         """Clear messages and add placeholder for Anthropic compatibility"""
