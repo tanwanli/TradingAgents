@@ -4,8 +4,8 @@ import json
 from tradingagents.agents.utils.agent_utils import (
     build_instrument_context,
     get_global_news,
-    get_news,
     get_language_instruction,
+    get_news,
 )
 from tradingagents.dataflows.config import get_config
 

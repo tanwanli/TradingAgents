@@ -1,8 +1,6 @@
 import time
 import json
-from tradingagents.agents.utils.agent_utils import get_language_instruction
-
-from tradingagents.agents.utils.agent_utils import build_instrument_context
+from tradingagents.agents.utils.agent_utils import build_instrument_context, get_language_instruction
 
 
 def create_research_manager(llm, memory):

@@ -8,7 +8,7 @@ from tradingagents.agents.utils.agent_utils import (
     get_fundamentals,
     get_income_statement,
     get_insider_transactions,
-    get_language_instruction
+    get_language_instruction,
 )
 from tradingagents.dataflows.config import get_config
 

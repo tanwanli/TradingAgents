@@ -20,6 +20,20 @@ from tradingagents.agents.utils.news_data_tools import (
 )
 
 
+def get_language_instruction() -> str:
+    """Return a prompt instruction for the configured output language.
+
+    Returns empty string when English (default), so no extra tokens are used.
+    Only applied to user-facing agents (analysts, portfolio manager).
+    Internal debate agents stay in English for reasoning quality.
+    """
+    from tradingagents.dataflows.config import get_config
+    lang = get_config().get("output_language", "English")
+    if lang.strip().lower() == "english":
+        return ""
+    return f" Write your entire response in {lang}."
+
+
 def build_instrument_context(ticker: str) -> str:
     """Describe the exact instrument so agents preserve exchange-qualified tickers."""
     return (
@@ -27,15 +41,6 @@ def build_instrument_context(ticker: str) -> str:
         "Use this exact ticker in every tool call, report, and recommendation, "
         "preserving any exchange suffix (e.g. `.TO`, `.L`, `.HK`, `.T`)."
     )
-
-def get_language_instruction() -> str:
-    """Return a language instruction string based on the configured output_language.
-    Returns an empty string for English (default), or a Chinese instruction string."""
-    from tradingagents.dataflows.config import get_config
-    lang = get_config().get("output_language", "en")
-    if lang == "zh":
-        return "\n\nIMPORTANT: You must respond entirely in Simplified Chinese (简体中文). All analysis, reports, recommendations, and outputs must be written in Chinese."
-    return ""
 
 def create_msg_delete():
     def delete_messages(state):

@@ -52,7 +52,6 @@ def get_news_yfinance(
     ticker: str,
     start_date: str,
     end_date: str,
-    limit: int = 20,
 ) -> str:
     """
     Retrieve news for a specific stock ticker using yfinance.
@@ -61,14 +60,13 @@ def get_news_yfinance(
         ticker: Stock ticker symbol (e.g., "AAPL")
         start_date: Start date in yyyy-mm-dd format
         end_date: End date in yyyy-mm-dd format
-        limit: Maximum number of news articles to fetch (default: 20)
 
     Returns:
         Formatted string containing news articles
     """
     try:
         stock = yf.Ticker(ticker)
-        news = yf_retry(lambda: stock.get_news(count=limit))
+        news = yf_retry(lambda: stock.get_news(count=20))
 
         if not news:
             return f"No news found for {ticker}"
@@ -171,6 +169,11 @@ def get_global_news_yfinance(
             # Handle both flat and nested structures
             if "content" in article:
                 data = _extract_article_data(article)
+                # Skip articles published after curr_date (look-ahead guard)
+                if data.get("pub_date"):
+                    pub_naive = data["pub_date"].replace(tzinfo=None) if hasattr(data["pub_date"], "replace") else data["pub_date"]
+                    if pub_naive > curr_dt + relativedelta(days=1):
+                        continue
                 title = data["title"]
                 publisher = data["publisher"]
                 link = data["link"]
